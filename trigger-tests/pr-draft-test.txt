@@ -1,0 +1,5 @@
+Automation Test - Pull request draft opened
+
+This file was created to test the Grok Android trigger "Pull request draft opened".
+
+Timestamp: 2026-08-12

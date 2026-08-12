@@ -1,0 +1,193 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-ring: var(--ring);
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+  --color-shadow: var(--shadow);
+
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 1.75rem;
+  --radius-full: 9999px;
+
+  --shadow-soft: 0 1px 2px var(--shadow), 0 8px 24px -12px var(--shadow);
+  --shadow-lift: 0 2px 4px var(--shadow), 0 14px 32px -14px var(--shadow);
+
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-soft: cubic-bezier(0.23, 1, 0.32, 1);
+
+  --duration-quick: 150ms;
+  --duration-fast: 250ms;
+  --duration-medium: 350ms;
+}
+
+:root {
+  --bg: #f6f3ee;
+  --bg-elevated: #fffcf8;
+  --bg-subtle: #ece7df;
+  --fg: #1c1916;
+  --fg-muted: #5c564f;
+  --fg-subtle: #8a837a;
+  --border: color-mix(in oklab, var(--fg) 10%, transparent);
+  --border-strong: color-mix(in oklab, var(--fg) 18%, transparent);
+  --accent: #0f766e;
+  --accent-fg: #f8fffd;
+  --ring: color-mix(in oklab, var(--accent) 45%, transparent);
+  --link: #fffcf8;
+  --link-hover: #ffffff;
+  --shadow: color-mix(in oklab, #1c1916 12%, transparent);
+  --page-wash: radial-gradient(
+    120% 80% at 50% -10%,
+    color-mix(in oklab, #d6cfc3 55%, transparent),
+    transparent 60%
+  );
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0c0b0a;
+  --bg-elevated: #161412;
+  --bg-subtle: #1e1b18;
+  --fg: #f4f0ea;
+  --fg-muted: #a8a198;
+  --fg-subtle: #746e66;
+  --border: color-mix(in oklab, var(--fg) 12%, transparent);
+  --border-strong: color-mix(in oklab, var(--fg) 22%, transparent);
+  --accent: #2dd4bf;
+  --accent-fg: #042f2e;
+  --ring: color-mix(in oklab, var(--accent) 40%, transparent);
+  --link: #1c1916;
+  --link-hover: #12100e;
+  --shadow: color-mix(in oklab, #000 45%, transparent);
+  --page-wash: radial-gradient(
+    120% 80% at 50% -10%,
+    color-mix(in oklab, #2a2420 70%, transparent),
+    transparent 58%
+  );
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100dvh;
+    background-color: var(--bg);
+    background-image: var(--page-wash);
+    background-attachment: fixed;
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01" on, "cv11" on;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--accent) 28%, transparent);
+    color: var(--fg);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .enter-stagger {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(3px);
+    animation: enter-rise var(--duration-medium) var(--ease-smooth) forwards;
+  }
+
+  .enter-stagger:nth-child(1) {
+    animation-delay: 40ms;
+  }
+  .enter-stagger:nth-child(2) {
+    animation-delay: 90ms;
+  }
+  .enter-stagger:nth-child(3) {
+    animation-delay: 140ms;
+  }
+  .enter-stagger:nth-child(4) {
+    animation-delay: 190ms;
+  }
+  .enter-stagger:nth-child(5) {
+    animation-delay: 240ms;
+  }
+  .enter-stagger:nth-child(6) {
+    animation-delay: 290ms;
+  }
+  .enter-stagger:nth-child(7) {
+    animation-delay: 340ms;
+  }
+  .enter-stagger:nth-child(8) {
+    animation-delay: 390ms;
+  }
+  .enter-stagger:nth-child(9) {
+    animation-delay: 440ms;
+  }
+  .enter-stagger:nth-child(10) {
+    animation-delay: 490ms;
+  }
+}
+
+@keyframes enter-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .enter-stagger {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,16 @@
+name: Test Trigger Workflow
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Simple success step
+        run: echo "Grok Android automation test - Checks completed & Workflow run completed"

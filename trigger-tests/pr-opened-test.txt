@@ -1,0 +1,5 @@
+Automation Test - Pull request opened
+
+This file was created on branch test-pr-opened to test the Grok Android trigger "Pull request opened".
+
+Timestamp: 2026-08-12
